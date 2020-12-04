@@ -1,0 +1,19 @@
+function [k1,k2,k3,massele1,massele2]=simplifiedprocess(E,NU,h,le,rho1,rho2)
+x=1;
+y=1;
+xi=(x)*le;
+yi=(y)*le;
+xp=(x)*le;
+yp=(y-1)*le;
+xj=(x-1)*le;
+yj=y*le;
+xm=(x-1)*le;
+ym=(y-1)*le;
+ID=1;
+k1=Quad2D4Node_Stiffness(E,NU,h,xi,yi,xj,yj,xm,ym,xp,yp,ID);
+massele1=Quad2D4Node_Mass(rho1,rho2,h,le,ID);
+ID=2;
+k2=Quad2D4Node_Stiffness(E,NU,h,xi,yi,xj,yj,xm,ym,xp,yp,ID);
+massele2=Quad2D4Node_Mass(rho1,rho2,h,le,ID);
+k3=zeros(8,8);
+end
